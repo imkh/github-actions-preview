@@ -23,7 +23,7 @@ jobs:
 
     - name: Get dependencies
       run: |
-        cd go && go get -v -t -d ./...
+        cd go && go get -v -d ./...
 
     - name: Build
       run: |
