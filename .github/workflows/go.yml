@@ -23,15 +23,12 @@ jobs:
 
     - name: Get dependencies
       run: |
-        cd go
-        go get -v -t -d ./...
+        cd go && go get -v -t -d ./...
 
     - name: Build
       run: |
-        cd go
-        go build -v .
+        cd go && go build -v .
 
     - name: Test
       run: |
-        cd go
-        go test -v .
+        cd go && go test -v .
