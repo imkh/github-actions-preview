@@ -2,33 +2,31 @@ name: Go
 on:
   push:
     paths:
-    - go/*
-    - .github/workflows/go.yml
+      - go-project/*
+      - .github/workflows/go.yml
 
 jobs:
-
   build:
-    name: Build & test
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go 1.12
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.12
+        id: go
 
-    - name: Set up Go 1.12
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.12
-      id: go
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
 
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v1
+      - name: Get dependencies
+        run: |
+          cd go-project && go get -v -d ./...
 
-    - name: Get dependencies
-      run: |
-        cd go && go get -v -d ./...
+      - name: Build
+        run: |
+          cd go-project && go build -v .
 
-    - name: Build
-      run: |
-        cd go && go build -v .
-
-    - name: Test
-      run: |
-        cd go && go test -v .
+      - name: Test
+        run: |
+          cd go-project && go test -v .
