@@ -21,12 +21,12 @@ jobs:
 
       - name: Get dependencies
         run: |
-          cd go && go get -v -d ./...
+          cd go-project && go get -v -d ./...
 
       - name: Build
         run: |
-          cd go && go build -v .
+          cd go-project && go build -v .
 
       - name: Test
         run: |
-          cd go && go test -v .
+          cd go-project && go test -v .
