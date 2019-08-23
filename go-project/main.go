@@ -1,13 +1,21 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
+	// Set port
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "1323"
+	}
+
 	// Echo instance
 	e := echo.New()
 
@@ -19,7 +27,7 @@ func main() {
 	e.GET("/", hello)
 
 	// Start server
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", port)))
 }
 
 // Handler
